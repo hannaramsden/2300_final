@@ -35,3 +35,18 @@
 	height: 800px;
 	padding-top: 100px;
 }
+
+#moreResearch {
+	display: none;
+}
+
+#click {
+	background-color: gray;
+	opacity: 0.8;
+	width: 20%;
+}
+
+#click:hover {
+	color: white;
+}
+
