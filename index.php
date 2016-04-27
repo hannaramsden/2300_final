@@ -11,11 +11,11 @@
 				var text_id = document.getElementById(text_id)
 				if(div_id.style.display != "block") {
 					div_id.style.display = "block";
-					text_id.innerHTML = "Collapse";
+					text_id.innerHTML = "Collapse content.";
 				}
 				else {
 					div_id.style.display = "none";
-					text_id.innerHTML = "Expand";
+					text_id.innerHTML = "Read more about our projects.";
 				}
 			}
 
@@ -36,6 +36,7 @@
 		</div>
 
 		<div id = "home">
+			<!-- add content + style me please! -->
 			The Robot and Social Dynamics Lab was founded to better understand the relationship between robotics and human communication. 
 			For our experiments, we test the interpersonal relationships of several diverse groups across varying communicative levels. 
 			We facilitate these tests through interactions with robots, hopefully increasing the chances of reducing verbal disagreement, 
@@ -49,6 +50,7 @@
 		<hr>
 
 		<div id = "research">
+			<!-- style me! -->
 			Project: Teamwork and Robots <br><br>
 			To understand and drive the effective integration of robots into teamwork, the broad long term objective of our research is to identify 
 			the mechanisms through which robots shape the emotion regulatory dynamics of teamwork and to design, implement, and evaluate capabilities 
@@ -63,9 +65,8 @@
 			studies this project will examine the mechanisms through which a robot’s influence on emotion regulation within a team affects subjective 
 			and objective team performance.
 			<br><br>
-			
-			<div id = "click" onclick = "showMore('moreResearch', 'click')">Expand</div>
-
+			<!-- hide content -->
+			<div id = "click" onclick = "showMore('moreResearch', 'click')">Read more about our projects.</div>
   			<div id="moreResearch">
 				Project: Affective Grounding<br><br>
 				Communication tools and social media have the potential to allow people to interact fluidly across national, cultural and linguistic boundaries 
@@ -105,22 +106,67 @@
 		</div>
 		<hr>
 		<div id = "team">
+			<!-- need pictures -->
 			Malte Jung<br><br>
 			Malte Jung is an Assistant Professor in Information Science at Cornell University and the Nancy H. ’62 and Philip M. ’62 Young Sesquicentennial Faculty Fellow. 
 			His research focuses on the intersections of teamwork, technology, and emotion. The goal of his research is to inform our basic understanding of technology supported teamwork as well as to inform 
-			how we design technology to support teamwork across a wide range of settings.<br>
-			mfj28@cornell.ed 206 Gates Hall / 607-255-2845<br><br>
+			how we design technology to support teamwork across a wide range of settings.<br><br>
+			<a href = "mailto:mfj28@cornell.edu?Subject=Sent%20from%20website%20user" target = "_top">Contact Professor Jung</a> <br><br>206 Gates Hall / 607-255-2845<br><br>
 			Solace Shen<br><br>
 			Solace Shen is a postdoctoral associate in the Department of Information Science at Cornell University. Her research centers on understanding people’s social and
 			 moral interactions with personified technologies that are designed to socially engage humans (e.g., robots, virtual agents, etc.), and the effects of such
 			  interactions on human, especially children’s, social and moral development. She seeks to bring insights from developmental psychology to theoretically ground
 			   the design of personified technologies in ways that can enhance human experience and development. Her current projects focus on whether and how interaction with 
-			   social robots can facilitate children’s development and use of social and emotional skills in the context of social conflict.
-			<br>solace.shen@cornell.edu / 220 Gates Hall / 607-243-2986
+			   social robots can facilitate children’s development and use of social and emotional skills in the context of social conflict.<br>
+			<br><a href = "mailto:solace.shen@cornell.edu?Subject=Sent%20from%20website%20user" target = "_top">Contact Solace</a><br><br> / 220 Gates Hall / 607-243-2986
 		</div>
 		<hr>
 		<div id = "contact">
-			Contact content here.
+			<h2>Contact the lab</h2><hr>
+			<form method="post" action = "#contact" enctype="multipart/form-data">
+				<h3>Your name:</h3>
+				<input type="text" name="name" required/>
+				<h3>Your email:</h3>
+				<input type = "email" name = "email" required/>
+				<h3>Your message:</h3>
+				<input type = "text" name = "message" required textarea rows = "4" cols = "50"/><br><br>
+				<input type="submit" name = "contact" value="Send message"/>
+			</form>
+					
+			<?php
+				if (isset($_POST['contact']))  {
+					$name = htmlentities($_POST["name"]);
+					$email = htmlentities($_POST["email"]);
+					$message = htmlentities($_POST["message"]);
+
+					$validFields = true;
+
+					if(!preg_match("/^[a-zA-Z .\-]*$/",$name)) {
+						echo "<br>Please only enter numerical characters for name field.";
+						$validFields = false;
+					}
+					// add all dis into DB!!!!!!
+
+					// else if ($validFields === TRUE)) {
+					// 	require_once "config.php";
+					// 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+					// 	if (mysqli_connect_error($mysqli)) {
+					// 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+					// 	}
+
+					// 	$insert_query = "INSERT INTO `messages` (`name`, `email`, `message`) 
+					// 	VALUES ('" . $name . "', '" . $email . "', '" . $message . "')";
+
+		 		// 		if ($mysqli->query($insert_query) === TRUE) {
+					// 		echo "<h3>Your message has been received.</h3>";
+					// 	}
+					// 	else {
+					// 		echo "Error: ".$insert_query."<br>". $mysqli->error;
+					// 	}
+					// }
+				}
+			?>
 		</div>
 		<hr>
 	</body>
