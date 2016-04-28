@@ -13,6 +13,19 @@ function showMore(div_id, text_id) {
 	}
 }
 
+function showResearchForm(div_id, text_id) {
+	var div_id = document.getElementById(div_id);
+	var text_id = document.getElementById(text_id);
+	if (div_id.style.display != "block") {
+		div_id.style.display = "block";
+		text_id.innerHTML = "Hide form";
+	}
+	else {
+		div_id.style.display = "none";
+		text_id.innerHTML = "Add a new post";
+	}
+}
+
 function showNewsForm(div_id, text_id) {
 	var div_id = document.getElementById(div_id);
 	var text_id = document.getElementById(text_id);
@@ -25,6 +38,7 @@ function showNewsForm(div_id, text_id) {
 		text_id.innerHTML = "Add a new post";
 	}
 }
+
 
 function showTeamForm(div_id, text_id) {
 	var div_id = document.getElementById(div_id);
