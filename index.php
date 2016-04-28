@@ -4,22 +4,7 @@
 		<meta charset="UTF-8">
 		<link rel = "stylesheet" type = "text/css" href="css/stylesheet.css">
 		<title>Cornell Organizational Robotics Lab</title>
-		<script type = "text/javascript">
-		//inspiratition from http://www.webdeveloper.com/forum/showthread.php?218226-hide-show-or-expand-collapse-DIV-need-a-simple-code
-			function showMore(div_id, text_id) {
-				var div_id = document.getElementById(div_id);
-				var text_id = document.getElementById(text_id)
-				if(div_id.style.display != "block") {
-					div_id.style.display = "block";
-					text_id.innerHTML = "Collapse content.";
-				}
-				else {
-					div_id.style.display = "none";
-					text_id.innerHTML = "Read more about our projects.";
-				}
-			}
-
-		</script>
+		<script src = "javascript/helper_functions.js"></script>
 	</head>
 
 	<body>
@@ -48,7 +33,6 @@
 			News content here.
 		</div>
 		<hr>
-
 		<div id = "research">
 			<!-- style me! -->
 			Project: Teamwork and Robots <br><br>
@@ -65,6 +49,7 @@
 			studies this project will examine the mechanisms through which a robot’s influence on emotion regulation within a team affects subjective 
 			and objective team performance.
 			<br><br>
+
 			<!-- hide content -->
 			<div id = "click" onclick = "showMore('moreResearch', 'click')">Read more about our projects.</div>
   			<div id="moreResearch">
@@ -103,26 +88,140 @@
 				quality of social interactions between two or more people. In year three we will explore how a robot can aid interpersonal emotion regulation by helping children learn effective interpersonal 
 				emotion regulation skills and by directly regulating the emotional quality of a social interaction.
 			</div>
+
+			<!-- add post if admin - must be logged in -->
+<!-- 			<?php
+				//if (isset($_SESSION['logged_user'])) {
+					//$logged_user = $_SESSION['logged_user'];
+			?> -->
+			<br><br>
+				<div id = "add_post" onclick = "showNewsForm('news_form', 'add_post')">Add a new post.</div>
+				<div id = "news_form">
+					<form method="post" enctype="multipart/form-data">
+						<h2>Add new post</h2> 
+						<h3>Title:</h3>
+						<input type="text" name="title" required/>
+						<h3>Body:</h3>
+						<input type = "text" name = "body" required/><br><br>
+						<input type="submit" name = "add" value="Add post"/>
+					</form>
+
+					<?php
+						if (isset($_POST['add'])) {
+							
+							$title = htmlentities($_POST["title"]);
+							$body = htmlentities($_POST["body"]);
+
+							if(!preg_match("/^[a-zA-Z .\-0-9!?:;]*$/",$title) || !preg_match("/^[a-zA-Z .\-0-9!?:;]*$/",$body)) {
+								echo "<br>Post titles and bodies can only include characters, numbers, and certain symbols.";
+							}
+
+							// else {
+							// 	require_once "config.php";
+							// 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+							// 	if (mysqli_connect_error($mysqli)) {
+							// 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+							// 	}
+
+				 		// 		$insert_query = "INSERT INTO `albums` (`albumID`, `albumTitle`, `albumDesc`, `albumCreated`, `albumMod`) 
+				 		// 		VALUES (NULL, '".$albumTitle."', '".$albumDesc."', CURRENT_DATE(), CURRENT_DATE())";
+
+							// 	if ($mysqli->query($insert_query) === TRUE) {
+							// 		echo "<h3>New album created.</h3>";
+							// 	}
+							// 	else {
+							// 		echo "Error: ".$insert_query."<br>". $mysqli->error;
+							// 	}
+							// }
+						}
+					//}
+				?>
+			</div>
 		</div>
 		<hr>
 		<div id = "team">
 			<!-- need pictures -->
+			<img src = "images/jung.jpg" alt = "jung"/><br>
 			Malte Jung<br><br>
-			Malte Jung is an Assistant Professor in Information Science at Cornell University and the Nancy H. ’62 and Philip M. ’62 Young Sesquicentennial Faculty Fellow. 
-			His research focuses on the intersections of teamwork, technology, and emotion. The goal of his research is to inform our basic understanding of technology supported teamwork as well as to inform 
-			how we design technology to support teamwork across a wide range of settings.<br><br>
-			<a href = "mailto:mfj28@cornell.edu?Subject=Sent%20from%20website%20user" target = "_top">Contact Professor Jung</a> <br><br>206 Gates Hall / 607-255-2845<br><br>
+			<div id = "malte_click" onclick = "pictureInfo('malte_profile', 'malte_click')">Click for researcher profile</div>
+			<div id = "malte_profile">
+				Malte Jung is an Assistant Professor in Information Science at Cornell University and the Nancy H. ’62 and Philip M. ’62 Young Sesquicentennial Faculty Fellow. 
+				His research focuses on the intersections of teamwork, technology, and emotion. The goal of his research is to inform our basic understanding of technology supported teamwork as well as to inform 
+				how we design technology to support teamwork across a wide range of settings.<br><br>
+				<a href = "mailto:mfj28@cornell.edu?Subject=Sent%20from%20website%20user" target = "_top">Contact Professor Jung</a> <br><br>206 Gates Hall / 607-255-2845<br><br>
+			</div>
+			<br>
+			<img src = "images/shen.jpeg" alt = "shen"/><br>
 			Solace Shen<br><br>
-			Solace Shen is a postdoctoral associate in the Department of Information Science at Cornell University. Her research centers on understanding people’s social and
-			 moral interactions with personified technologies that are designed to socially engage humans (e.g., robots, virtual agents, etc.), and the effects of such
-			  interactions on human, especially children’s, social and moral development. She seeks to bring insights from developmental psychology to theoretically ground
-			   the design of personified technologies in ways that can enhance human experience and development. Her current projects focus on whether and how interaction with 
-			   social robots can facilitate children’s development and use of social and emotional skills in the context of social conflict.<br>
-			<br><a href = "mailto:solace.shen@cornell.edu?Subject=Sent%20from%20website%20user" target = "_top">Contact Solace</a><br><br> / 220 Gates Hall / 607-243-2986
+			<div id = "shen_click" onclick = "pictureInfo('shen_profile', 'shen_click')">Click for researcher profile</div>
+			<div id = "shen_profile">
+				Solace Shen is a postdoctoral associate in the Department of Information Science at Cornell University. Her research centers on understanding people’s social and
+				 moral interactions with personified technologies that are designed to socially engage humans (e.g., robots, virtual agents, etc.), and the effects of such
+				  interactions on human, especially children’s, social and moral development. She seeks to bring insights from developmental psychology to theoretically ground
+				   the design of personified technologies in ways that can enhance human experience and development. Her current projects focus on whether and how interaction with 
+				   social robots can facilitate children’s development and use of social and emotional skills in the context of social conflict.<br>
+				<br><a href = "mailto:solace.shen@cornell.edu?Subject=Sent%20from%20website%20user" target = "_top">Contact Solace</a><br><br> / 220 Gates Hall / 607-243-2986
+			</div>
+			<!-- add team member if admin - must be logged in -->
+<!-- 			<?php
+				//if (isset($_SESSION['logged_user'])) {
+					//$logged_user = $_SESSION['logged_user'];
+			?> -->
+			<br><br>
+				<div id = "add_member" onclick = "showTeamForm('team_form', 'add_member')">Add a new profile.</div>
+				<div id = "team_form">
+					<form method="post" enctype="multipart/form-data">
+						<h2>Add a new profile</h2> 
+						<h3>Name:</h3>
+						<input type="text" name="name" required/>
+						<h3>Profile:</h3>
+						<input type = "text" name = "profile" required/>
+						<h3>Email:</h3>
+						<input type = "email" name = "email" required/>
+						<h3>Office location (optional):</h3>
+						<input type = "text" name = "location"/><br><br>
+						<input type="submit" name = "add_profile" value="Add profile"/>
+					</form>
+
+					<?php
+						if (isset($_POST['add_profile'])) {
+							
+							$name = htmlentities($_POST["name"]);
+							$profile = htmlentities($_POST["profile"]);
+							$email = htmlentities($_POST["email"]);
+							$location = htmlentities($_POST["location"]);
+
+							if(!preg_match("/^[a-zA-Z .\-0-9!?:;]*$/",$title) || !preg_match("/^[a-zA-Z .\-0-9!?:;]*$/",$profile)
+								|| !preg_match("/^[a-zA-Z .\-0-9!?:;]*$/",$location)) {
+								echo "<br>Member names, profiles, and office locations can only include characters, numbers, and certain symbols.";
+							}
+
+							// else {
+							// 	require_once "config.php";
+							// 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+							// 	if (mysqli_connect_error($mysqli)) {
+							// 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+							// 	}
+
+				 		// 		$insert_query = "INSERT INTO `albums` (`albumID`, `albumTitle`, `albumDesc`, `albumCreated`, `albumMod`) 
+				 		// 		VALUES (NULL, '".$albumTitle."', '".$albumDesc."', CURRENT_DATE(), CURRENT_DATE())";
+
+							// 	if ($mysqli->query($insert_query) === TRUE) {
+							// 		echo "<h3>New album created.</h3>";
+							// 	}
+							// 	else {
+							// 		echo "Error: ".$insert_query."<br>". $mysqli->error;
+							// 	}
+							// }
+						}
+					//}
+				?>
 		</div>
 		<hr>
 		<div id = "contact">
-			<h2>Contact the lab</h2><hr>
+			<h2>Contact the lab</h2>
 			<form method="post" action = "#contact" enctype="multipart/form-data">
 				<h3>Your name:</h3>
 				<input type="text" name="name" required/>

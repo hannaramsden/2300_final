@@ -36,17 +36,18 @@
 	padding-top: 100px;
 }
 
-#moreResearch {
+#moreResearch, #malte_profile, #shen_profile, #news_form, #team_form {
 	display: none;
 }
 
-#click {
+#click, #malte_click, #shen_click, #add_post, #add_member {
 	background-color: gray;
 	opacity: 0.8;
 	width: 20%;
 }
 
-#click:hover {
+#click:hover, #malte_click:hover, #shen_click:hover{
 	color: white;
 }
+
 
